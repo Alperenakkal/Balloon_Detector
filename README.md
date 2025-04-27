@@ -29,3 +29,13 @@ PyQt5 ile oluşturulmuş grafik arayüz (GUI) ve iki farklı tespit yöntemi kul
 
 4.  **YOLO Modeli (İsteğe Bağlı):**
     Google Drive linki: https://drive.google.com/file/d/1mT1PBRCZNb0AIt5kSMmF5pNPCWqybxug/
+
+Katkıda Bulunma (Contributing)
+    Projeyi Fork'layın.
+    Yeni bir Feature Branch oluşturun (git checkout -b feature/YeniOzellik).
+    Değişikliklerinizi Commit'leyin (git commit -am 'Yeni özellik eklendi').
+    Branch'inizi Push'layın (git push origin feature/YeniOzellik).
+    Bir Pull Request açın.
+Ya da
+    Direkt issue falan açın, bende contributor olmanız için yetki vereyim.
+    Ama genelde ilk dediğim şekilde yapılır.
