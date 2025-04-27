@@ -24,8 +24,10 @@ PyQt5 ile oluşturulmuş grafik arayüz (GUI) ve iki farklı tespit yöntemi kul
     ```bash
     pip install -r requirements.txt
     ```
-    *Not: Ultralytics ve Torch kurulumu sisteminize (özellikle CUDA desteği varsa GPU kullanımı için) göre farklılık gösterebilir. 
-     https://developer.nvidia.com/cuda-gpus buradan bakıp versiyonunuza göre yükleme yapabilirsiniz. Yapmadan işlemci ile de çalışabilirsiniz.*
+    *Not: Torch kurulumunu req içine eklemedim. Tercihi kendiniz yapabilmeniz için, eğer GPU'nuzda CUDA desteği varsa GPU kullanımı için kendinize uygun modeli yüklemelisiniz. 
+     https://developer.nvidia.com/cuda-gpus buradan bakıp versiyonunuza göre yükleme yapabilirsiniz. 
+     https://pytorch.org/get-started/locally/ bu siteden otomatik seçim de yapabilirsiniz.
+     Eğer uğraşmak istemiyorsanız CPU kısmını seçip normal 1.8+ Torch ile de çalışabilirsiniz. İşlemci üzerinden yürütmüş olursunuz.*
 
 4.  **YOLO Modeli (İsteğe Bağlı):**
     Google Drive linki: https://drive.google.com/file/d/1mT1PBRCZNb0AIt5kSMmF5pNPCWqybxug/
