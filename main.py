@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-from balloon_detector.gui.main_window import BalloonDetectorGUI
+from balloon_detector.gui.main_window.py import BalloonDetectorGUI
+
 
 def main():
     app = QApplication(sys.argv)

@@ -6,7 +6,7 @@ from ..config import VIDEO_SETTINGS
 from .detector import BalloonDetector
 import logging
 from collections import deque
-
+from balloon_detector.core.pid_controller import PIDController
 class VideoProcessor(QObject):
     frame_processed = pyqtSignal(object, dict)  # frame ve stats
     progress_updated = pyqtSignal(int, int)  # mevcut_kare, toplam_kare
@@ -45,6 +45,9 @@ class VideoProcessor(QObject):
         # Logging ayarları
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger('VideoProcessor')
+        # PID kontrolcü (örnek: yatay eksende hedefe odaklanma)
+        self.pid = PIDController(kp=0.1, ki=0.01, kd=0.05)  
+
     
     def set_video(self, video_path):
         """Video dosyasını ayarla, toplam frame ve kaynak FPS'i hesapla"""
@@ -229,7 +232,21 @@ class VideoProcessor(QObject):
             # --- OpenCV Pencere Güncellemesi İçin ---
             # Eğer cv2.imshow kullanılıyorsa, olayları işlemek için küçük bir bekleme gerekir.
             # cv2.waitKey(1) # Çok küçük tut, 1ms yeterli olmalı
-            
+            # --- PID Uygulaması (sadece ilk tespit için örnek) ---
+            if detections:
+            # İlk tespit edilen balonun merkezini al (ellipse.center)
+                cx = detections[0]['ellipse']['center'][0]
+                frame_center_x = frame.shape[1] / 2
+
+            # PID çıktısını hesapla
+                output = self.pid.update(target_value=frame_center_x, current_value=cx)
+
+            # Konsola yaz veya logla
+                self.logger.info(f"PID Output: {output:.2f} (Target: {frame_center_x}, Current: {cx})")
+
+            # İstersen bu output'u GUI'de bir label'a da iletebilirsin
+            # Frame'i ve istatistikleri gönder
+            self.frame_processed.emit(frame_with_detections, stats)
         except Exception as e:
             # Daha iyi hata ayıklama için traceback ekle
             self.logger.error(f"Frame işleme hatası: {str(e)}", exc_info=True)
